@@ -7,21 +7,15 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [token, setToken] = useState();
   const [location, setLocation] = useState("GATE");
-
+  const [userNameInput, setUserNameInput] = useState(``);
   // TODO: signup
- const response = await fetch("https://fsa-jwt-practice.herokuapp.com", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: emailInput,
-        password: passwordInput,
-      }),
+  const signup = async () => {
+    const response = await fetch(`${API}/signup`, {
+      method: `POST`,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify,
     });
-    const tokenObj = await response.json();
-    localStorage.setItem("token", tokenObj.access_token);
-    setToken(tokenObj.access_token);
+  };
   // TODO: authenticate
 
   const value = { location };
